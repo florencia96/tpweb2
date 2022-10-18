@@ -1,0 +1,52 @@
+*{
+    color:#191919;
+}
+
+
+a {
+    text-decoration: none;
+    
+}
+
+header {
+    text-align: center;
+    background-color: rgb(8, 70, 51);
+  
+}
+
+.logo{
+    width:100%;
+    background:rgb(207, 21, 21);
+    height: 120px;
+}
+.conductor {
+    margin-top: 40px;
+    padding: 30px;
+    width: 100%;
+    border: 3px solid rgb(8,70,51);
+  
+ 
+}
+footer{
+    margin:0;
+     height: 200px;
+  
+     background-color: rgb(55, 51, 52);
+  }
+select{
+    text-align: center;
+}
+.volver{
+   font-size:40px;
+}
+
+@media (min-width: 750px){
+    .conductor {
+        margin-top: 40px;
+        padding: 30px;
+        width: 30%;
+        border: 3px solid rgb(8, 70, 51);
+      
+     
+    }
+}
