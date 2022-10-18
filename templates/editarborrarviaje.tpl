@@ -16,6 +16,8 @@
                     <th class="col">SALIDA</th>
                     <th class="col">LLEGADA</th>
                     <th class="col">PRECIO</th>
+                    <th class="col">CONDUCTOR</th>
+
                     {if $isAdmin}
                         <th class="col">borrar</th>
                         <th class="col">editar</th>
@@ -32,7 +34,7 @@
                     <tr style=text-align:center>
 
                         <td><input class="form-control" type="text" name="origen" value="{$item->origen}"></td>
-                        <td><input class="form-control" type="text" name="desttino" value="{$item->desttino}"></td>
+                        <td><input class="form-control" type="text" name="destino" value="{$item->destino}"></td>
                         <td><input class="form-control" type="text" name="fecha" value="{$item->fecha}"></td>
                         <td><input class="form-control" type="text" name="salida" value="{$item->salida}"></td>
                         <td><input class="form-control" type="text" name="llegada" value="{$item->llegada}"></td>
