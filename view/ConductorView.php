@@ -20,7 +20,7 @@ class ConductorView {
         $this->smarty->display('templates/conductores.tpl');
     }
 
-    public function renderDegreeProgram($viajes, $nombre = ""){
+    public function renderProgram($viajes, $nombre = ""){
         $this->smarty->assign('viajes', $viajes);
         $this->smarty->assign('nombre_conductor', $nombre);
         $this->smarty->display('templates/viajes.tpl');
@@ -30,7 +30,7 @@ class ConductorView {
     //   -------------------------------FORMULARIO---------------------------------------
     //   -------------------VISTAS AGREGAR-----------------------------------
     //vista conductor
-    public function formAddDegreeProgram($aviso="",$isAdmin=""){
+    public function formAddProgram($aviso="",$isAdmin=""){
         $this->smarty->assign('isAdmin', $isAdmin);
         $this->smarty->assign('aviso', $aviso);
         $this->smarty->display("templates/ingresaconductor.tpl");
@@ -39,7 +39,7 @@ class ConductorView {
     
 
      //   -----------------------------VISTA TABLAS Conductor----------------------------------------
-     public function renderTableDegreePrograms($isAdmin,$tablaConductores,$aviso=""){
+     public function renderTablePrograms($isAdmin,$tablaConductores,$aviso=""){
         $this->smarty->assign('isAdmin', $isAdmin);
         $this->smarty->assign('tablaConductores', $tablaConductores);
       
@@ -48,7 +48,7 @@ class ConductorView {
         $this->smarty->display("templates/editarborrarconductor.tpl");
     }
       //   ----------------------------location conductores----------------------------------------    
-    public function renderTableOfLocationDegreePrograms(){
+    public function renderTableOfLocationPrograms(){
         header("Location: ".BASE_URL."tablaconductores");
     }
 
@@ -58,7 +58,7 @@ class ConductorView {
         header("Location: ".BASE_URL."conductores");
     }
 
-    public function showLocationToAddFormDegreeProgram(){
+    public function showLocationToAddFormProgram(){
 
         header("Location: ".BASE_URL."agregarconductor");   
     }

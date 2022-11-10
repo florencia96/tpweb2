@@ -29,21 +29,21 @@ switch ($params[0]) {
 
     case 'conductor':
         if (isset($params[1]) && isset($params[2]))
-            $conductorController->filterDegreeProgram($params[1], $params[2]);
+            $conductorController->filterProgram($params[1], $params[2]);
         else
         $viajeController->redirectHome();
         break;
 
     case 'viajes':
         if (!isset($params[1]))
-            $viajeController->showSubjects();
+            $viajeController->showTrips();
         else
             $viajeController->redirectHome();
         break;
 
     case 'detalle':
         if (isset($params[2], $params[1]))
-            $viajeController->filterSubject($params[2], $params[1]);
+            $viajeController->filterTrip($params[2], $params[1]);
         else
             $viajeController->redirectHome();
         break;
@@ -82,61 +82,61 @@ switch ($params[0]) {
         //   ------------------------------VISTA AGREGAR VIAJE CONDUCTOR------------------------------------------------
 
     case 'agregarconductor':
-        $conductorController->formDegreeProgram();
+        $conductorController->formProgram();
         break;
     case 'agregarviaje':
-        $viajeController->formSubject();
+        $viajeController->formTrip();
         break;
         //   ------------------------------AGREGAR CONDUCTOR VIAJE------------------------------------------------
     case 'agregar-conductor':
-        $conductorController->addDegreeProgram();
+        $conductorController->addProgram();
         break;
 
     case 'agregar-viaje':
-        $viajeController->addSubject();
+        $viajeController->addTrip();
         break;
         //   ------------------------------EDITAR BORRAR CONDUCTOR------------------------------------------------
     case 'tablaconductores':
-        $conductorController->showTableOfDegreePrograms();
+        $conductorController->showTableOfPrograms();
         break;
 
     case 'borrarconductor':
         if (isset($params[1]))
-            $conductorController->deleteDegreeProgram($params[1]);
+            $conductorController->deleteProgram($params[1]);
      
         break;
 
     case 'editarconductor':
         if (isset($params[1])) {
-            $conductorController->editDegreeProgram($params[1]);
+            $conductorController->editProgram($params[1]);
         } else
             $conductorController->redirectHome();
         break;
         //   ------------------------------EDITAR BORRAR VIAJE------------------------------------------------
     case 'tablaviajes':
-        $viajeController->showTableOfSubjects();
+        $viajeController->showTableOfTrips();
         break;
 
     case 'borrarviaje':
         if (isset($params[1]))
-            $viajeController->deleteSubject($params[1]);
+            $viajeController->deleteTrip($params[1]);
         else
             $viajeController->redirectHome();
         break;
 
     case 'editarviaje':
         if (isset($params[1]))
-            $viajeController->editSubject($params[1]);
+            $viajeController->editTrip($params[1]);
         else
             $viajeController->redirectHome();
         break;
         //   ------------------------------AGREGAR CONDUCTOR VIAJE------------------------------------------------
 
     case 'agregarconductor':
-        $conductorController->formDegreeProgram();
+        $conductorController->formProgram();
         break;
     case 'agregarviaje':
-        $viajeController->formSubject();
+        $viajeController->formTrip();
         break;
 
 

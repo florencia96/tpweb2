@@ -16,7 +16,7 @@ class ConductorModel
 
     
     //PARA LA VISTA PRINCIPAL, Y PARA EL SELECT
-    function getDegreeProgram()
+    function getProgram()
     {
         $sentencia = $this->db->prepare('SELECT nombre, id_conductor FROM conductor');
         $sentencia->execute(array());
@@ -24,7 +24,7 @@ class ConductorModel
         return  $conductores;
     }
     // -------------------------------------MOSTRAR TABLAS----------------------------------------
-    function getTableDegreeProgram()
+    function getTableProgram()
     {
         $sentencia = $this->db->prepare('SELECT * FROM conductor');
         $sentencia->execute(array());
@@ -34,7 +34,7 @@ class ConductorModel
   
 
 
-    public function filterDegreeProgram($id_conductor, $nombre_conductor)
+    public function filterProgram($id_conductor, $nombre_conductor)
     {
         $sentencia = $this->db->prepare("SELECT viaje.origen, conductor.id_conductor, viaje.id_viaje FROM conductor INNER JOIN viaje
                                             ON conductor.id_conductor = viaje.id_conductor WHERE conductor.id_conductor = ? AND conductor.nombre = ?");
@@ -43,7 +43,7 @@ class ConductorModel
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 
-    function getTableSubjects($id, $nombre)
+    function getTableTrips($id, $nombre)
     {
         $sentencia = $this->db->prepare('SELECT nombre, id_conductor FROM conductor WHERE id_conductor= ? AND nombre = ? ');
         $sentencia->execute(array($id, $nombre));
@@ -51,10 +51,10 @@ class ConductorModel
         return  $conductores;
     }
 
-    //   ------------------------------AGREGAR CONDUCTOR Y VIAJES----------------------------------------------
+    //   ------------------------------AGREGAR CONDUCTOR---------------------------------------------
     //AGREGAR CONDUCTOR
 
-    function addDegreeProgram($nombre, $vehiculo)
+    function addProgram($nombre, $vehiculo)
     {
         $sentencia = $this->db->prepare("INSERT INTO conductor(nombre,vehiculo) VALUES(?,?)");
         $sentencia->execute(array($nombre, $vehiculo));
@@ -65,20 +65,20 @@ class ConductorModel
     //   ------------------------------EDITAR BORRAR CONDUCTOR----------------------------------------------       
 
     // buscarIdConductorEnTablaViaje
-    public function searchIdDegreeProgramByTableSubjects($id_conductor)
+    public function searchIdProgramByTableTrips($id_conductor)
     {
         $sentencia = $this->db->prepare("SELECT id_conductor FROM `viaje` WHERE id_conductor=?");
         $sentencia->execute(array($id_conductor));
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
     //BORRAR Conductor
-    public function deleteDegreeProgram($id_conductor)
+    public function deleteProgram($id_conductor)
     {
         $sentencia = $this->db->prepare("DELETE FROM conductor WHERE id_conductor=?");
         $sentencia->execute(array($id_conductor));
     }
     //EDITAR CONDUCTOR
-    public function editDegreeProgram($nombre, $vehiculo, $id_conductor)
+    public function editProgram($nombre, $vehiculo, $id_conductor)
     {
         $sentencia = $this->db->prepare("UPDATE `conductor` SET `nombre`=?,`vehiculo`=?WHERE `id_conductor`=?");
         $sentencia->execute(array($nombre, $vehiculo, $id_conductor));

@@ -15,22 +15,22 @@ class ViajeModel
     }
 
         //----------Viajes POR id----------
-    public function getSubjectById($id_viaje)
+    public function getTripById($id_viaje)
     {
         $sentencia = $this->db->prepare("SELECT * FROM viaje WHERE id_viaje = ?");
         $sentencia->execute(array($id_viaje));
         return $sentencia->fetch(PDO::FETCH_OBJ);
     }
-//nombre me genera duda no se si es nombre o origen
-    public function getSubject()
+    
+    public function getTrip()
     {
-        $sentencia = $this->db->prepare("SELECT nombre, id_viaje FROM viaje");
+        $sentencia = $this->db->prepare("SELECT origen, id_viaje FROM viaje");
         $sentencia->execute(array());
         $viajes = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $viajes;
     }
 
-     function getSubjects()
+     function getTrips()
     {
         $sentencia = $this->db->prepare('SELECT * FROM viaje');
         $sentencia->execute(array());
@@ -47,13 +47,13 @@ class ViajeModel
    }
         //-----------------------INSERTAR viaje ------------------------------------------------     
 
-    function  addSubject($origen, $destino, $fecha, $salida, $llegada, $precio, $id_conductor)
+    function  addTrip($origen, $destino, $fecha, $salida, $llegada, $precio, $id_conductor)
     {
         $sentencia = $this->db->prepare("INSERT INTO viaje(origen,destino,fecha,salida,llegada,precio,id_conductor) VALUES(?,?,?,?,?,?,?)");
         $sentencia->execute(array($origen, $destino, $fecha, $salida, $llegada, $precio, $id_conductor));
 
     }
-        function getTableOfSubjects()
+        function getTableOfTrips()
     {
         $sentencia = $this->db->prepare('SELECT * FROM viaje');
         $sentencia->execute(array());
@@ -64,19 +64,19 @@ class ViajeModel
         //   ------------------------------EDITAR BORRAR VIAJES----------------------------------------------       
 
     //BORRAR VIAJE
-    public function deleteSubject($id_viaje)
+    public function deleteTrip($id_viaje)
     {
         $sentencia = $this->db->prepare("DELETE FROM viaje WHERE id_viaje=?");
         $sentencia->execute(array($id_viaje));
     }
 
-    public function editSubject($origen, $destino, $fecha, $salida, $llegada, $precio, $id_conductor, $id_viaje)
+    public function editTrip($origen, $destino, $fecha, $salida, $llegada, $precio, $id_conductor, $id_viaje)
     {
         $sentencia = $this->db->prepare("UPDATE `viaje` SET `origen`=?,`destino`=?,`fecha`=?,`salida`=?,`llegado`=?,`precio`=?,`id_conductor`=? WHERE `id_viaje`=?");
         $sentencia->execute(array($origen, $destino, $fecha, $salida, $llegada, $precio, $id_conductor, $id_viaje));
     }
     // buscarIdConductorEnTablaViaje
-    public function searchIdDegreeProgramByTableSubjects($id_conductor)
+    public function searchIdProgramByTableTrips($id_conductor)
     {
         $sentencia = $this->db->prepare("SELECT id_conductor FROM `viaje` WHERE id_conductor=?");
         $sentencia->execute(array($id_conductor));

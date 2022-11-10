@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-10-2022 a las 18:40:45
+-- Tiempo de generación: 19-10-2022 a las 17:35:26
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.2
 
@@ -34,6 +34,14 @@ CREATE TABLE `conductor` (
   `vehiculo` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `conductor`
+--
+
+INSERT INTO `conductor` (`id_conductor`, `nombre`, `vehiculo`) VALUES
+(2, 'Florencia', '34'),
+(3, 'Mario Gonzales', '3');
+
 -- --------------------------------------------------------
 
 --
@@ -43,9 +51,16 @@ CREATE TABLE `conductor` (
 CREATE TABLE `usuario` (
   `nombre` varchar(50) NOT NULL,
   `rol` varchar(50) DEFAULT NULL,
-  `passwd` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL
+  `passwd` varchar(225) NOT NULL,
+  `email` varchar(110) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`nombre`, `rol`, `passwd`, `email`) VALUES
+('admin', 'admin', '$argon2id$v=19$m=1024,t=2,p=2$aWRuLmV3L2o2dGdJdGt3WQ$Eb7G9p8kBUqWweTyPMpKdKtjmzua0JQAhbYpK7nBeWY', 'admin@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -65,6 +80,13 @@ CREATE TABLE `viaje` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Volcado de datos para la tabla `viaje`
+--
+
+INSERT INTO `viaje` (`id_viaje`, `id_conductor`, `origen`, `destino`, `fecha`, `salida`, `llegada`, `precio`) VALUES
+(4, 2, 'Tandil', 'San Manuel', '2022-10-29', '23:21:00.000000', '04:21:00.000000', '1504');
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -78,7 +100,7 @@ ALTER TABLE `conductor`
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`email`);
+  ADD PRIMARY KEY (`email`(100));
 
 --
 -- Indices de la tabla `viaje`
@@ -95,13 +117,13 @@ ALTER TABLE `viaje`
 -- AUTO_INCREMENT de la tabla `conductor`
 --
 ALTER TABLE `conductor`
-  MODIFY `id_conductor` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_conductor` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `viaje`
 --
 ALTER TABLE `viaje`
-  MODIFY `id_viaje` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_viaje` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas

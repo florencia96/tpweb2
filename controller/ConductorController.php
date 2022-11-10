@@ -23,72 +23,72 @@ class ConductorController
 
     public function showHome()
     {
-        $conductores = $this->model->getDegreeProgram();
+        $conductores = $this->model->getProgram();
         $this->view->showHome($conductores);
     }
 
 
-    public function filterDegreeProgram($nombre_conductor, $id_conductor)
+    public function filterProgram($nombre_conductor, $id_conductor)
     {
         $nombre_con_espacios = str_replace('-', ' ', $nombre_conductor);
-        $viajes = $this->model->filterDegreeProgram($id_conductor, $nombre_con_espacios);
+        $viajes = $this->model->filterProgram($id_conductor, $nombre_con_espacios);
         if (!empty($viajes))
-            $this->view->renderDegreeProgram($viajes, $nombre_con_espacios);
+            $this->view->renderProgram($viajes, $nombre_con_espacios);
         else
             $this->view->showHomeLocation();
     }
-    //VISTA FORMULARIO AGREGAR CONDUCTOR
-    public function formDegreeProgram()
+    //MUESTRA FORMULARIO AGREGAR CONDUCTOR
+    public function formProgram()
     {
         $isAdmin = $this->helper->checkLoggedIn();
-        $this->view->FormAddDegreeProgram("",$isAdmin);
+        $this->view->FormAddProgram("",$isAdmin);
     }
     //AGREGAR CONDUCTOR
-    public function addDegreeProgram()
+    public function addProgram()
     {
 
           $isAdmin = $this->helper->checkLoggedIn();
           
             if (!empty($_POST['nombre']) && !empty($_POST['vehiculo'])) {
-                $this->model->addDegreeProgram($_POST['nombre'], $_POST['vehiculo']);
-                $this->view->showLocationToAddFormDegreeProgram();
+                $this->model->addProgram($_POST['nombre'], $_POST['vehiculo']);
+                $this->view->showLocationToAddFormProgram();
           
         }else{
-           $this->view->formAddDegreeProgram("faltan completar campos",$isAdmin);
+           $this->view->formAddProgram("faltan completar campos",$isAdmin);
     }
 }
     //TABLA EDITAR Y BORRAR CONDUCTOR
-    public function showTableOfDegreePrograms()
+    public function showTableOfPrograms()
     {
         $isAdmin = $this->helper->checkLoggedIn();
-        $tablaConductores = $this->model->getTableDegreeProgram();
-        $this->view->renderTableDegreePrograms($isAdmin, $tablaConductores);
+        $tablaConductores = $this->model->getTableProgram();
+        $this->view->renderTablePrograms($isAdmin, $tablaConductores);
     }
     //borrar conductor
-    public function deleteDegreeProgram($id_conductor)
+    public function deleteProgram($id_conductor)
     {
         $isAdmin = $this->helper->checkLoggedIn();
         if ($isAdmin == true) {
-            $viajesAsociados = $this->model_viaje->searchIdDegreeProgramByTableSubjects($id_conductor);
+            $viajesAsociados = $this->model_viaje->searchIdProgramByTableTrips($id_conductor);
          
             if (count($viajesAsociados) == 0) {
-                $this->model->deleteDegreeProgram($id_conductor);
-                $this->view->renderTableOfLocationDegreePrograms();
+                $this->model->deleteProgram($id_conductor);
+                $this->view->renderTableOfLocationPrograms();
             } else {
 
-                $tablaConductores =  $this->model->getTableDegreeProgram();
-                $this->view->renderTableDegreePrograms($isAdmin, $tablaConductores, "El conductor seleccionado no se puede borrar porque tiene asociados viajes");
+                $tablaConductores =  $this->model->getTableProgram();
+                $this->view->renderTablePrograms($isAdmin, $tablaConductores, "El conductor seleccionado no se puede borrar porque tiene asociados viajes");
             }
         } else {
             $this->view_user->renderLogin();
         }
     }
-    public function editDegreeProgram($id_conductor)
+    public function editProgram($id_conductor)
     {
         $isAdmin = $this->helper->checkLoggedIn();
         if ($isAdmin == true) {
-            $this->model->editDegreeProgram($_POST['nombre'], $_POST['vehiculo'], $id_conductor);
-            $this->view->renderTableOfLocationDegreePrograms();
+            $this->model->editProgram($_POST['nombre'], $_POST['vehiculo'], $id_conductor);
+            $this->view->renderTableOfLocationPrograms();
         } else {
             $this->view_user->renderLogin();
         }
